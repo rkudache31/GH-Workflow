@@ -1,0 +1,19 @@
+name: Deployment Exercise 1
+on: push
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Get code
+              uses: actions/checkout@v4
+            - name: Install dependencies
+              run: npm ci --prefix  "./04PracticeProject"
+            - name: Lint
+              run: npm run lint
+            - name: Test code
+              run: npm test --prefix  "./04PracticeProject"
+            - name: Build code
+              run: npm --prefix  "./04PracticeProject" run build
+            - name: Deploying code
+              run: echo "Deploying.."
+
